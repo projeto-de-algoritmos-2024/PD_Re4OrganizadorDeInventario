@@ -23,18 +23,35 @@ function createItemElement(item, isSelected) {
 function updateDisplay() {
     const itemsList = document.getElementById('itemsList');
     const selectedItemsDiv = document.getElementById('selectedItems');
-    
+
     itemsList.innerHTML = '';
     selectedItemsDiv.innerHTML = '';
-    
+
     items.forEach(item => {
         const isSelected = selectedItems.has(item.id);
         const itemElement = createItemElement(item, isSelected);
-        
+
         if (isSelected) {
             selectedItemsDiv.appendChild(itemElement);
         } else {
             itemsList.appendChild(itemElement);
         }
     });
+
+    function addNewItem(event) {
+        event.preventDefault();
+        const name = document.getElementById('itemName').value;
+        const weight = parseInt(document.getElementById('itemWeight').value);
+        const value = parseInt(document.getElementById('itemValue').value);
+        const newItem = {
+            id: items.length + 1,
+            name: name,
+            weight: weight,
+            value: value,
+            image: 'assets/images/default.png' 
+        };
+        items.push(newItem);
+        document.getElementById('addItemForm').reset();
+        updateDisplay(); return false;
+    }
 }
