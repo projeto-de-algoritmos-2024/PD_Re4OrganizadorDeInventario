@@ -55,3 +55,34 @@ function updateDisplay() {
         updateDisplay(); return false;
     }
 }
+
+function knapsack(items, maxWeight) {
+    const n = items.length;
+    const dp = Array(n + 1).fill().map(() => Array(maxWeight + 1).fill(0));
+    const selected = new Set();
+    for (let i = 1; i <= n; i++) {
+    for (let w = 0; w <= maxWeight; w++) {
+    if (items[i-1].weight <= w) {
+    dp[i][w] = Math.max(
+    items[i-1].value + dp[i-1][w - items[i-1].weight],
+    dp[i-1][w]
+    );
+    } else {
+    dp[i][w] = dp[i-1][w];
+    }
+    }
+    }
+    let w = maxWeight;
+    for (let i = n; i > 0 && w > 0; i--) {
+    if (dp[i][w] !== dp[i-1][w]) {
+    selected.add(items[i-1].id);
+    w -= items[i-1].weight;
+    }
+    }
+    return selected;
+    }
+    function calculateOptimalInventory() {
+    const maxWeight = parseInt(document.getElementById('maxWeight').value);
+    selectedItems = knapsack(items, maxWeight);
+    updateDisplay();
+    }
