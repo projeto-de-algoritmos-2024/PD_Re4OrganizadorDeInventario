@@ -129,9 +129,12 @@ async function addNewItem(event) {
 
     updateDisplay();
 
-    calculateOptimalInventory();
-
     return false;
+}
+
+function resetInventory() {
+    selectedItems.clear();
+    updateDisplay();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
