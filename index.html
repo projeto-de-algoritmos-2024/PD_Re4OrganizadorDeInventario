@@ -34,25 +34,29 @@
                 <button type="submit">Adicionar Item</button>
             </form>
         </div>
-        <div class="inventory-container">
-            <div class="available-items">
-                <h2>Itens Disponíveis</h2>
-                <div id="itemsList" class="items-grid"></div>
-            </div>
-            <div class="selected-items">
-                <h2>Itens na Mochila</h2>
-                <div id="selectedItems" class="items-grid"></div>
-            </div>
-        </div>
 
         <div class="settings">
             <label for="maxWeight">Peso Máximo da Mochila:</label>
             <input type="number" id="maxWeight" value="20" min="1" max="100">
             <button onclick="calculateOptimalInventory()">Otimizar Inventário</button>
+            <button onclick="resetInventory()">Reiniciar</button>
         </div>
 
+        <div class="inventory-container">
+            <div class="available-items">
+                <h2>Itens Disponíveis</h2>
+                <div id="itemsList" class="items-grid"></div>
+            </div>
+
+            <div class="selected-items">
+                <h2>Itens na Mochila</h2>
+                <div class="inventory-stats">
+                    <p>Peso Total: <span id="currentWeight">0</span>/<span id="maxWeightDisplay">20</span></p>
+                </div>
+                <div id="selectedItems" class="items-grid"></div>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
-
 </html>
